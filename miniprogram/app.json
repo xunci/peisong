@@ -12,7 +12,27 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "物资配送",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icon_cloud.png",
+        "selectedIconPath": "images/icon_cloud_HL.png",
+        "text": "购物"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icon_component.png",
+        "selectedIconPath": "images/icon_component_HL.png",
+        "text": "订单"
+      }
+    ]
   }
 }
