@@ -11,6 +11,7 @@
 	"appid": "wxb975fc086e6b3762",
 	"projectname": "goods",
 	"libVersion": "2.2.5",
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,

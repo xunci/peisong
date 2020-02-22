@@ -1,0 +1,25 @@
+{
+  "method":"addOrUpdateOrder",
+  "params": {
+    "order": {
+      {
+        "_id": "202002221530_mjh",
+        "orderer": "mjh",
+        "phone_number": "13164622147",
+        "goods": [
+          {
+            "name": "奶粉",
+            "number": "一罐",
+            "note": "",
+            "stats": "购买", //枚举： 已下单、已购买、无法购买
+            "handler": "ztx",
+            "hand_time": ""
+          }
+        ],
+        "hand_time": "",
+        "handler": "",
+        "status": "", // 已下单、正在采购、已购买、已配送、完成
+      }
+    }
+  }
+}

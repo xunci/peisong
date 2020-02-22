@@ -17,6 +17,9 @@ Page({
       })
       return
     }
+    
+
+
 
     // 获取用户信息
     wx.getSetting({
@@ -53,13 +56,14 @@ Page({
       data: {},
       success: res => {
         console.log('[云函数] [login] user openid: ', res.result.openid)
+        console.log('res', res)
         app.globalData.openid = res.result.openid
         wx.navigateTo({
           url: '../userConsole/userConsole',
         })
       },
       fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
+        console.error('[云函数] [getOrderList] 调用失败', err)
         wx.navigateTo({
           url: '../deployFunctions/deployFunctions',
         })
