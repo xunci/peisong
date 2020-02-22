@@ -11,6 +11,7 @@ var statuses = ["orderd", "purchasing", "purchased", "dispatched", "done", "canc
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
+  const _openid = wxContext.OPENID
   console.log("event ", event)
 
   if (statuses.indexOf(event.order.status) == -1) {
@@ -69,6 +70,9 @@ exports.main = async (event, context) => {
 
   var id = event.order._id
   delete event.order._id
+  event.order.openid = _openid
+  event.order.hand_time = new Date()
+  event.order.handler = event.order.orderer
   if (_handType == "add") {
     await db.collection("order").add({
       data:event.order

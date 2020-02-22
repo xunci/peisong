@@ -22,7 +22,7 @@ exports.main = async (event, context) => {
   if (event.order_type == "history_order") {
     console.log("history order")
     querry = {
-      "orderer": wxContext.OPENID
+      "openid": wxContext.OPENID
     }
   } else if (event.order_type == "shopping_order") {
     querry = {

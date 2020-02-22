@@ -8,7 +8,6 @@
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
-		"nodeModules": true,
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
@@ -20,7 +19,8 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"enhance": true
+		"enhance": true,
+		"nodeModules": true
 	},
 	"appid": "wxb975fc086e6b3762",
 	"projectname": "goods",
