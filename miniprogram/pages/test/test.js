@@ -15,7 +15,9 @@ Page({
     wx.cloud.callFunction({
 
       name: 'getOrderList',
-      data: {},
+      data: {
+        order_type: 'history_order'
+      },
       success: res => {
         console.log("res", res        )
         console.log('res.dispatcher', res.result.dispatcher)
