@@ -21,5 +21,8 @@
         "status": "", // 已下单、正在采购、已购买、已配送、完成
       }
     },
-    "response": "success"
+    "response": {
+      "status":"success",
+      "err":""
+    }
 }
