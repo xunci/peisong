@@ -1,0 +1,13 @@
+.order-split{
+  height: 20px;
+  background: #efefef;
+}
+
+.detail{
+  text-align: right;
+  color: #179B16;
+}
+
+.spread{
+  margin-right: 20px;
+}

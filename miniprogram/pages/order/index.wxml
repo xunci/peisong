@@ -1,0 +1,17 @@
+<!-- index.wxml -->
+<view class="container">
+  <mp-cells title="订单{{index+1}} - {{item.status}}" wx:for="{{orders}}" wx:key="{{index}}">
+    <mp-cell wx:for="{{item.goods}}" wx:for-index="idx" wx:for-item="goodsItem" wx:key="{{idx}}" title="{{goodsItem.name}}：">
+      {{goodsItem.number}}
+    </mp-cell>
+
+    <mp-cell class="detail">
+      <text data-id="{{item.id}}" class="spread" bindtap="update">修改</text>
+      <text data-id="{{item.id}}" class="spread" bindtap="cancel">取消订单</text>
+      <text data-id="{{item.id}}" bindtap="add">再次购买</text>
+    </mp-cell>
+
+    <view class="order-split"></view>
+
+  </mp-cells>
+</view>

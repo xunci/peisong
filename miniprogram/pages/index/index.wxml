@@ -3,10 +3,10 @@
   <mp-form class="mp-form" models="{{formData}}">
     <mp-cells title="基本信息">
       <mp-cell title="姓名">
-        <input type="text" bindinput="formInputChange" data-field="orderer" class="weui-input" placeholder="请输入姓名" />
+        <input type="text" value="{{formData.orderer}}" bindinput="formInputChange" data-field="orderer" class="weui-input" placeholder="请输入姓名" />
       </mp-cell>
       <mp-cell title="电话">
-        <input type="text" bindinput="formInputChange" data-field="phone_number" class="weui-input" placeholder="请输入电话" />
+        <input type="text" value="{{formData.phone_number}}" bindinput="formInputChange" data-field="phone_number" class="weui-input" placeholder="请输入电话" />
       </mp-cell>
     </mp-cells>
 
@@ -15,7 +15,7 @@
         <input type="text" value="{{item.name}}" bindinput="goodsNameChange" data-index="{{index}}" class="weui-input" placeholder="请输入货物" />
       </mp-cell>
       <mp-cell title="数目">
-        <input type="number" value="{{item.count}}" bindinput="goodsCountChange" data-index="{{index}}" class="weui-input" placeholder="请输入数量" />
+        <input type="text" value="{{item.number}}" bindinput="goodsCountChange" data-index="{{index}}" class="weui-input" placeholder="请输入数量" />
       </mp-cell>
     </mp-cells>
   </mp-form>
@@ -24,6 +24,4 @@
     <button class="ps-btn" type="primary" bindtap="submitForm">提交</button>
     <button class="ps-btn" type="primary" bindtap="addItem">新增</button>
   </view>
-
-  <mp-tabbar class="tab-bar" list="{{tabs}}" bindchange="tabChange"></mp-tabbar>
 </view>

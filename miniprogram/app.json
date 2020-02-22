@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/order/index",
+    
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
@@ -28,7 +30,7 @@
         "text": "购物"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/order/index",
         "iconPath": "images/icon_component.png",
         "selectedIconPath": "images/icon_component_HL.png",
         "text": "订单"
