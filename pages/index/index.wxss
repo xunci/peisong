@@ -1,0 +1,19 @@
+/**index.wxss**/
+import style
+
+.order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.order-list {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.order-status-list {
+  color: #aaa;
+}
