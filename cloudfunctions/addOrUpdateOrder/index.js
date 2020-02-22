@@ -6,10 +6,20 @@ cloud.init({
 })
 const db = cloud.database()
 
+var statuses = ["orderd", "purchasing", "purchased", "dispatched", "done", "conceled"]
+
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   console.log("event ", event)
+
+  if (statuses.indexOf(event.order.status) == -1) {
+    return {
+      err: "status is not correct",
+      status: "fail"
+    }
+  }
+
   const _ = db.command
   var _err = ""
   var _status = ""
@@ -34,17 +44,8 @@ exports.main = async (event, context) => {
       res_log = res
       isDispatcher = (res.data.length != 0)
     })
-
-  if (!isDispatcher && event.order.status != "orderd") {
-    _err = "the order is not editable"
-    _status = "fail"
-    return {
-      err: _err,
-      status: _status
-    }
-  }
   
-  var _isExist = false 
+  var _handType = "add" 
 
   await db.collection("order")
   .where({
@@ -52,13 +53,23 @@ exports.main = async (event, context) => {
   })
   .count()
   .then( res => {
+    if (res.total > 1) {
+      _handType = "update"
+    }
     console.log("order cnt ", res)
   })
-
+  if (!isDispatcher && event.order.status != "orderd" && _handType == "update") {
+    _err = "the order is not editable"
+    _status = "fail"
+    return {
+      err: _err,
+      status: _status
+    }
+  }
 
   var id = event.order._id
   delete event.order._id
-  if (!_isExist) {
+  if (_handType == "add") {
     await db.collection("order").add({
       data:event.order
     })
@@ -78,6 +89,18 @@ exports.main = async (event, context) => {
       console.log("order update ", res)
     })
   }
+
+  db.collection("log").add({
+    data: {
+      openid: wxContext.OPENID,
+      handType: _handType,
+      data: event.order,
+      time: new Date().toLocaleTimeString()
+    }
+  })
+  .then(res => {
+      console.log("order add ", res)
+  })
 
   return {
     status:_status,
