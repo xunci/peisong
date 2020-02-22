@@ -9,19 +9,17 @@ Page({
     orderId: null
   },
 
-  onLoad() {},
+  onLoad() {
+    // this.getDispatcherInfo() // 判断是否配送人
+  },
 
   onShow() {
-    this.onGetOpenid()
-
-    console.log('app.action', app.action)
-    console.log('app.currentOrder', app.currentOrder)
     const { action, currentOrder } = app
     if (action) {
       this.setData({
         action,
         goods: currentOrder.goods,
-        orderId: currentOrder.id,
+        orderId: currentOrder._id,
         formData: {
           orderer: currentOrder.orderer,
           phone_number: currentOrder.phone_number,
@@ -29,11 +27,21 @@ Page({
       })
     }
     
-
-
-
     app.action = null
     app.currentOrder = null
+  },
+
+  getDispatcherInfo(){
+    wx.cloud.callFunction({
+      name: 'getDispatcherInfo',
+      data: {},
+      success: res => {
+        console.log('[云函数] [getDispatcherInfo] : ', res.result)
+      },
+      fail: err => {
+        console.error('[云函数] [getDispatcherInfo] 调用失败', err)
+      }
+    })
   },
 
   submitForm() {

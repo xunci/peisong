@@ -3,16 +3,36 @@ const app = getApp()
 
 Page({
   data: {
-    orders: [
-      { orderer: 'mjh', phone_number: '13333333333', status: '已下单', id: 1, goods: [
-        { name: '土豆', number: 30 },
-        { name: '白菜', number: '3斤' },
-      ] },
-      { orderer: 'mjh', phone_number: '13333333333', status: '已下单', id: 1, goods: [{ name: 'mjh', number: 30 }] },
-    ],
+    orders: [],
+    isDispatcher:app.isDispatcher
   },
 
   onLoad() {},
+
+  onShow() {
+    this.fetchOrderList()
+  },
+
+  fetchOrderList() {
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'getOrderList',
+      data: {
+        order_type: 'history_order',
+      },
+      success: res => {
+        console.log('getOrderList', res.result)
+        const { err, list } = res.result
+        if (err) return
+        this.setData({
+          orders: list,
+        })
+      },
+      fail: err => {
+        console.error('[云函数] [getOrderList] 调用失败', err)
+      },
+    })
+  },
 
   add(e) {
     const { id } = e.currentTarget.dataset
@@ -37,4 +57,8 @@ Page({
     const { id } = e.currentTarget.dataset
     console.log('id', id)
   },
+
+  checkboxChange(data){
+    console.log('data', data)
+  }
 })

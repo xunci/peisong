@@ -3,9 +3,15 @@
   background: #efefef;
 }
 
-.detail{
-  text-align: right;
+.btn-wrap{
+  display: flex;
+  flex-direction: row;
   color: #179B16;
+  margin: 10px 0; 
+}
+.btn-item{
+  flex: 1;
+  text-align: center;
 }
 
 .spread{
