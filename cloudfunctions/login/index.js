@@ -6,6 +6,7 @@ const cloud = require('wx-server-sdk')
 // 初始化 cloud
 cloud.init()
 
+const db = cloud.database()
 /**
  * 这个示例将经自动鉴权过的小程序用户 openid 返回给小程序端
  * 
@@ -21,11 +22,23 @@ exports.main = (event, context) => {
 
   // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）
   const wxContext = cloud.getWXContext()
-
+  const _ = db.commond
+  var isDispatcher = false
+  var res_log = "mjh res"
+  var err_log = "mjh err"
+  await db.collection('dispatcher')
+    .where({
+      openid: _.eq(wxContext.OPENID)
+    })
+    .get()
+    .then(res => {
+      res_log = res
+      isDispatcher = (res.data.length != 0)
+    })
+    .catch(err => {
+      err_log = err
+    })
   return {
-    event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
+    dispatcher:isDispatcher
   }
 }
