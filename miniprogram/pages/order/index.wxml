@@ -1,6 +1,6 @@
 <!-- index.wxml -->
 <view class="container">
-  <mp-cells title="订单{{index+1}} - {{item.status}}" wx:for="{{orders}}" wx:key="{{index}}">
+  <mp-cells title="订单{{index+1}} - {{statusMap[item.status]}}" wx:for="{{orders}}" wx:key="{{index}}">
 
     <mp-cell wx:if="{{!isDispatcher}}" wx:for="{{item.goods}}" wx:for-index="idx" wx:for-item="goodsItem" wx:key="{{idx}}" title="{{goodsItem.name}}：">
       {{goodsItem.number}}
@@ -18,12 +18,12 @@
 
     <view class="btn-wrap">
       <block></block>
-      <view wx:if="{{!isDispatcher}}" data-id="{{item._id}}" class="btn-item" bindtap="update">修改</view>
-      <view wx:if="{{!isDispatcher}}" data-id="{{item._id}}" class="btn-item" bindtap="cancel">取消订单</view>
+      <view wx:if="{{!isDispatcher && item.status === 'orderd'}}" data-id="{{item._id}}" class="btn-item" bindtap="update">修改</view>
+      <view wx:if="{{!isDispatcher && item.status === 'orderd'}}" data-id="{{item._id}}" class="btn-item" bindtap="cancel">取消订单</view>
       <view wx:if="{{!isDispatcher}}" data-id="{{item._id}}" class="btn-item" bindtap="add">再次购买</view>
 
-      <view wx:if="{{isDispatcher}}" data-id="{{item._id}}" class="btn-item" bindtap="buy">采购</view>
-      <view wx:if="{{isDispatcher}}" data-id="{{item._id}}" class="btn-item" bindtap="dispatch">配送</view>
+      <view wx:if="{{isDispatcher && item.status === 'orderd'}}" data-id="{{item._id}}" class="btn-item" bindtap="buy">采购</view>
+      <view wx:if="{{isDispatcher && item.status === 'purchased'}}" data-id="{{item._id}}" class="btn-item" bindtap="dispatch">配送</view>
     </view>
 
     <view class="order-split"></view>
