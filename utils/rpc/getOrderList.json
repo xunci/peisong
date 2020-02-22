@@ -22,7 +22,7 @@
       ],
       "hand_time": "",
       "handler": "",
-      "status": "", //枚举："orderd", "purchasing", "purchased", "dispatched", "done" 已下单、正在采购、已购买、已配送、完成
+      "status": "", //枚举："orderd", "purchasing", "purchased", "dispatched", "done", "concel" 已下单、正在采购、已购买、已配送、完成、取消
     }
   ]},
   "err": ""
