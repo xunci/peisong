@@ -15,5 +15,5 @@
   ],
   "hand_time": "",
   "handler": "",
-  "status": "", //"orderd", "purchasing", "purchased", "dispatched", "done", "conceled" 已下单、正在采购、已购买、已配送、完成、取消
+  "status": "", //"orderd", "purchasing", "purchased", "dispatched", "done", "cancelled" 已下单、正在采购、已购买、已配送、完成、取消
 }

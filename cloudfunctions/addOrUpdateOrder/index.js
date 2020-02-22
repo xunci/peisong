@@ -6,7 +6,7 @@ cloud.init({
 })
 const db = cloud.database()
 
-var statuses = ["orderd", "purchasing", "purchased", "dispatched", "done", "conceled"]
+var statuses = ["orderd", "purchasing", "purchased", "dispatched", "done", "cancelled"]
 
 // 云函数入口函数
 exports.main = async (event, context) => {
