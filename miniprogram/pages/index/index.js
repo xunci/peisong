@@ -72,8 +72,10 @@ Page({
   onGetOpenid() {
     // 调用云函数
     wx.cloud.callFunction({
-      name: 'login',
-      data: {a:123},
+      name: 'getOrderList',
+      data: {
+        order_type: 'history_order'
+      },
       success: res => {
         console.log('[云函数] [login] user openid: ', res.result)
       },
