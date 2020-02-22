@@ -1,5 +1,7 @@
 export const http = function(fn, data = {}) {
   return new Promise((resolve, reject) => {
+    console.log(`[云函数] [${fn}]参数: `, data)
+
     wx.showLoading({
       title: '加载中',
     })
@@ -8,7 +10,7 @@ export const http = function(fn, data = {}) {
       data,
       success: res => {
         wx.hideLoading()
-        console.log(`[云函数] [${fn}]成功: `, res.result)
+        console.log(`[云函数] [${fn}]返回: `, res.result)
         resolve(res.result)
       },
       fail: err => {

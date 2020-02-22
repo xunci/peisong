@@ -1,15 +1,15 @@
 <!-- index.wxml -->
 <view class="container">
-  <mp-cells title="订单{{index+1}} - {{statusMap[item.status]}}" wx:for="{{orders}}" wx:key="{{index}}">
+  <mp-cells title="订单{{index+1}} - {{statusMap[item.status]}}" wx:for="{{orders}}">
 
-    <mp-cell wx:if="{{!isDispatcher}}" wx:for="{{item.goods}}" wx:for-index="idx" wx:for-item="goodsItem" wx:key="{{idx}}" title="{{goodsItem.name}}：">
+    <mp-cell wx:if="{{!isDispatcher}}" wx:for="{{item.goods}}" wx:for-index="idx" wx:for-item="goodsItem" title="{{goodsItem.name}}：">
       {{goodsItem.number}}
     </mp-cell>
 
     <mp-checkbox-group wx:if="{{isDispatcher}}" prop="checkbox" multi="{{true}}" bindchange="checkboxChange">
         <mp-checkbox 
           wx:for="{{item.goods}}" 
-          wx:for-index="idx" wx:for-item="goodsItem" wx:key="{{idx}}"
+          wx:for-index="idx" wx:for-item="goodsItem"
           label="{{goodsItem.name}} / {{goodsItem.number}}" 
           value="{{goodsItem.name}}" 
           disabled="{{!isDispatcher}}"
