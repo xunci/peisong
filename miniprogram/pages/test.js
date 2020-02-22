@@ -13,19 +13,17 @@ Page({
    */
   onLoad: function (options) {
     wx.cloud.callFunction({
-      
+
       name: 'getOrderList',
       data: {},
       success: res => {
         console.log("res", res        )
         console.log('res.dispatcher', res.result.dispatcher)
+        console.log("res.res ", res.res)
         
       },
       fail: err => {
         console.error('[云函数] [get OrderList] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
       }
     })
   },

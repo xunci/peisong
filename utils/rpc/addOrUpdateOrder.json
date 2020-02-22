@@ -1,7 +1,7 @@
 {
   "method":"addOrUpdateOrder",
   "params": {
-    "order": {
+    "order": 
       {
         "_id": "202002221530_mjh",
         "orderer": "mjh",
@@ -20,6 +20,6 @@
         "handler": "",
         "status": "", // 已下单、正在采购、已购买、已配送、完成
       }
-    }
-  }
+    },
+    "response": "success"
 }

@@ -1,0 +1,7 @@
+{
+  "method":"login",
+  "param":{},
+  "response":{
+    "dispatcher": true
+  }
+}

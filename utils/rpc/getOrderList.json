@@ -1,10 +1,11 @@
 {
   "method":"getOrderList",
   "req_params": {
-    "roles":""  ,// 枚举： orderer, purchaser, dispatcher
-    "order_type": "" //枚举:  history_order, shopping_order, dispatching_order; 分别代表 历史订单、待购物订单、 待配送订单 
+    "order_type": "" //枚举:  "history_order", "shopping_order", "dispatching_order"; 分别代表 历史订单、待购物订单、 待配送订单 
   },
-  "response" :[
+  "response" :
+  {
+    "list": [
     {
       "_id": "202002221530_mjh",
       "orderer": "mjh",
@@ -21,7 +22,8 @@
       ],
       "hand_time": "",
       "handler": "",
-      "status": "", // 已下单、正在采购、已购买、已配送、完成
+      "status": "", //枚举："orderd", "purchasing", "purchased", "dispatched", "done" 已下单、正在采购、已购买、已配送、完成
     }
-  ]
+  ]},
+  "err": ""
 }
