@@ -70,10 +70,10 @@ exports.main = async (event, context) => {
 
   var id = event.order._id
   delete event.order._id
-  event.order.openid = _openid
   event.order.hand_time = new Date()
-  event.order.handler = event.order.orderer
+  event.order.handler = _openid
   if (_handType == "add") {
+    event.order.openid = _openid
     await db.collection("order").add({
       data:event.order
     })
