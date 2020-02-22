@@ -26,7 +26,7 @@ exports.main = async (event, context) => {
     }
   } else if (event.order_type == "shopping_order") {
     querry = {
-      status:"ordered"
+      status:"orderd"
     }
   } else if (event.order_type == "dispatching_order") {
     querry = {
