@@ -14,6 +14,7 @@ Page({
       done: '已完成',
       cancelled: '已取消',
     },
+    status: 'orderd',
   },
 
   onLoad() {},
@@ -26,8 +27,17 @@ Page({
   },
 
   async fetchOrderList() {
+    const { status } = this.data
+    let order_type = 'shopping_order'
+    if (status === 'orderd') {
+      order_type = 'shopping_order'
+    } else if (status === 'purchased') {
+      order_type = 'dispatching_order'
+    } else {
+      order_type = status
+    }
     const { list, err } = await http('getOrderList', {
-      order_type: app.isDispatcher ? 'shopping_order' : 'history_order',
+      order_type: app.isDispatcher ? order_type : 'history_order',
     })
     if (err) return
     this.setData({
@@ -90,5 +100,23 @@ Page({
 
   checkboxChange(data) {
     console.log('data', data)
+  },
+
+  showSelect() {
+    const that = this
+    const status = ['orderd', 'purchasing', 'purchased', 'dispatched', 'done', 'cancelled']
+    wx.showActionSheet({
+      itemList: ['已下单', '采购中', '已采购', '已配送', '已完成', '已取消'],
+      success(res) {
+        that.setData({
+          status: status[res.tapIndex],
+        })
+
+        that.fetchOrderList()
+      },
+      fail(res) {
+        console.log(res.errMsg)
+      },
+    })
   },
 })
