@@ -10,7 +10,7 @@ Page({
   },
 
   onLoad() {
-    // this.getDispatcherInfo() // 判断是否配送人
+    this.getDispatcherInfo() // 判断是否配送人
   },
 
   onShow() {
@@ -33,9 +33,10 @@ Page({
 
   getDispatcherInfo(){
     wx.cloud.callFunction({
-      name: 'getDispatcherInfo',
+      name: 'login',
       data: {},
       success: res => {
+        app.isDispatcher = res.result.dispatcher
         console.log('[云函数] [getDispatcherInfo] : ', res.result)
       },
       fail: err => {
