@@ -13,7 +13,7 @@ const db = cloud.database()
  * event 参数包含小程序端调用传入的 data
  * 
  */
-exports.main = (event, context) => {
+exports.main = async(event, context) => {
   console.log(event)
   console.log(context)
 
@@ -22,7 +22,7 @@ exports.main = (event, context) => {
 
   // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）
   const wxContext = cloud.getWXContext()
-  const _ = db.commond
+  const _ = db.command
   var isDispatcher = false
   var res_log = "mjh res"
   var err_log = "mjh err"
