@@ -9,7 +9,7 @@
         <input type="text" value="{{formData.phone_number}}" bindinput="formInputChange" data-field="phone_number" class="weui-input" placeholder="请输入电话" />
       </mp-cell>
     </mp-cells>
-
+    <view class="split"></view>
     <mp-cells title="货物{{index+1}}" wx:for="{{goods}}" wx:key="{{index}}">
       <mp-cell title="名称">
         <input type="text" value="{{item.name}}" bindinput="goodsNameChange" data-index="{{index}}" class="weui-input" placeholder="请输入货物" />
@@ -17,10 +17,12 @@
       <mp-cell title="数目">
         <input type="text" value="{{item.number}}" bindinput="goodsCountChange" data-index="{{index}}" class="weui-input" placeholder="请输入数量" />
       </mp-cell>
+      <view wx:if="{{index!==0}}" data-index="{{index}}" class="del" bindtap="delItem">删除</view>
+      <view class="split"></view>
     </mp-cells>
   </mp-form>
   
-  <view style="display:flex;margin: 20px 0;">
+  <view style="display:flex;margin: 20px 0 40px;">
     <button class="ps-btn" type="primary" bindtap="submitForm">提交</button>
     <button class="ps-btn" type="primary" bindtap="addItem">新增</button>
   </view>

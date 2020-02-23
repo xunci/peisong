@@ -1,20 +1,23 @@
 <!-- index.wxml -->
 <view class="container">
-  <button wx:if="{{isDispatcher}}" style="display:inline" bindtap="showSelect">{{statusMap[status]}} ></button>
-  <mp-cells title="{{item.orderer}} - {{item.phone_number}} - {{statusMap[item.status]}}" wx:for="{{orders}}">
+  <button wx:if="{{isDispatcher}}" class="filter-btn" bindtap="showSelect">{{statusMap[status]}} ></button>
+  <mp-cells title="{{item.orderer}} - {{item.phone_number}}" wx:for="{{orders}}">
 
     <mp-cell wx:if="{{!isDispatcher}}" wx:for="{{item.goods}}" wx:for-index="idx" wx:for-item="goodsItem" title="{{goodsItem.name}}：">
       {{goodsItem.number}}
     </mp-cell>
 
-    <mp-checkbox-group wx:if="{{isDispatcher}}" prop="checkbox" multi="{{true}}" bindchange="checkboxChange">
+    <mp-checkbox-group wx:if="{{isDispatcher}}" prop="checkbox" multi="{{true}}">
         <mp-checkbox 
+          data-index="{{index}}"
+          data-idx="{{idx}}"
+          bindchange="checkboxChange"
           wx:for="{{item.goods}}" 
           wx:for-index="idx" wx:for-item="goodsItem"
-          label="{{goodsItem.name}} / {{goodsItem.number}}" 
+          label="{{goodsItem.name}} - {{goodsItem.number}} - {{goodsItem.status==='in_stock'?'有货':'无货'}}" 
           value="{{goodsItem.name}}" 
           disabled="{{!isDispatcher}}"
-          checked="{{goodsItem.checked}}"></mp-checkbox>
+          checked="{{goodsItem.status==='in_stock' }}"></mp-checkbox>
     </mp-checkbox-group>
 
     <view class="btn-wrap">
@@ -30,4 +33,5 @@
     <view class="order-split"></view>
 
   </mp-cells>
+  <view class="no-data" wx:if="{{orders.length===0}}">暂无数据</view>
 </view>

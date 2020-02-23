@@ -9,5 +9,5 @@
     "mp-form": "../../miniprogram_npm/weui-miniprogram/form/form",
     "mp-icon": "../../miniprogram_npm/weui-miniprogram/icon/icon"
   },
-  "navigationBarTitleText": "历史订单"
+  "navigationBarTitleText": "订单"
 }

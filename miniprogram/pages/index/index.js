@@ -5,7 +5,7 @@ const goodsItem = {
   name: '',
   number: '',
   note: '',
-  stats: '购买', //枚举： 已下单、已购买、无法购买
+  stats: 'in_stock', //枚举： 已下单、已购买、无法购买
   handler: '',
   hand_time: '',
 }
@@ -44,12 +44,12 @@ Page({
     const { dispatcher } = await http('login')
     // const dispatcher = false
     app.isDispatcher = dispatcher
-    if(dispatcher){
+    if (dispatcher) {
       wx.hideTabBar()
       wx.switchTab({
         url: `/pages/order/index`,
       })
-    }else{
+    } else {
       wx.showTabBar()
     }
   },
@@ -88,6 +88,15 @@ Page({
     })
   },
 
+  delItem(e) {
+    const { goods } = this.data
+    const { index } = e.currentTarget.dataset
+    goods.splice(index, 1)
+    this.setData({
+      goods: goods,
+    })
+  },
+
   formInputChange(e) {
     const { field } = e.currentTarget.dataset
     this.setData({
@@ -105,7 +114,7 @@ Page({
   goodsCountChange(e) {
     const { index } = e.currentTarget.dataset
     this.setData({
-      [`goods[${index}].count`]: e.detail.value,
+      [`goods[${index}].number`]: e.detail.value,
     })
   },
 

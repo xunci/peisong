@@ -13,3 +13,15 @@
   left: 0;
   right: 0;
 }
+.del{
+  position: absolute;
+  top: -24px;
+  right: 20px;
+  height: 20px;
+  font-size: 15px;
+  color: #c00;
+}
+.split{
+  height: 10px;
+  background: #efefef;
+}

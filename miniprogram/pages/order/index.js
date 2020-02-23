@@ -98,14 +98,19 @@ Page({
     }
   },
 
-  checkboxChange(data) {
-    console.log('data', data)
+  checkboxChange(e) {
+    const { index, idx } = e.target.dataset
+    const { checked } = e.detail
+
+    this.setData({
+      [`orders[${index}].goods[${idx}].status`]: checked ? 'in_stock' : 'out_of_stock',
+    })
   },
 
   showSelect() {
     const that = this
     // const status = ['orderd', 'purchasing', 'purchased', 'dispatched', 'done', 'cancelled']
-    const status = ['orderd',  'purchased']
+    const status = ['orderd', 'purchased']
     wx.showActionSheet({
       // itemList: ['待采购', '采购中', '已采购', '已配送', '已完成', '已取消'],
       itemList: ['待采购', '待配送'],
