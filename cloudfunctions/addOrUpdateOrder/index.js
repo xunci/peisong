@@ -94,12 +94,12 @@ exports.main = async (event, context) => {
     })
   }
 
-  db.collection("log").add({
+ await db.collection("log").add({
     data: {
       openid: wxContext.OPENID,
       handType: _handType,
       data: event.order,
-      time: new Date().toLocaleTimeString(),
+      time: new Date(),
       order_id: id
 
     }

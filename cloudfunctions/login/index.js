@@ -36,6 +36,21 @@ exports.main = async(event, context) => {
       isDispatcher = (res.data.length != 0)
     })
 
+
+  console.log("debug log new date", new Date())
+  console.log("debug log local", new Date().toLocaleTimeString())
+  await db.collection("log").add({
+    data: {
+      openid: wxContext.OPENID,
+      handType: "login",
+      data: event,
+      time: new Date(),
+    }
+  })
+    .then(res => {
+      console.log("order add ", res)
+    })
+
     console.log("isDispatcher ", isDispatcher)
 
   return {
