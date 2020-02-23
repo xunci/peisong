@@ -54,7 +54,7 @@ exports.main = async (event, context) => {
   })
   .count()
   .then( res => {
-    if (res.total > 1) {
+    if (res.total > 0) {
       _handType = "update"
     }
     console.log("order cnt ", res)
@@ -99,7 +99,9 @@ exports.main = async (event, context) => {
       openid: wxContext.OPENID,
       handType: _handType,
       data: event.order,
-      time: new Date().toLocaleTimeString()
+      time: new Date().toLocaleTimeString(),
+      order_id: id
+
     }
   })
   .then(res => {
