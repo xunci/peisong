@@ -1,6 +1,10 @@
 <!-- index.wxml -->
 <view class="container">
-  <mp-form class="mp-form" models="{{formData}}">
+  <view class="authorize" wx:if="{{authorized === false}}">
+    <view>为了更好的完成货物配送，需要获取您的基本信息:</view>
+    <button style="margin-top:20px" open-type="getUserInfo" bindgetuserinfo="getUserInfo">允许</button>
+  </view>
+  <mp-form wx:if="{{authorized}}" class="mp-form" models="{{formData}}">
     <mp-cells title="基本信息">
       <mp-cell title="姓名">
         <input type="text" value="{{formData.orderer}}" bindinput="formInputChange" data-field="orderer" class="weui-input" placeholder="请输入姓名" />
@@ -22,7 +26,7 @@
     </mp-cells>
   </mp-form>
   
-  <view style="display:flex;margin: 20px 0 40px;">
+  <view wx:if="{{authorized}}" style="display:flex;margin: 20px 0 40px;">
     <button class="ps-btn" type="primary" bindtap="submitForm">提交</button>
     <button class="ps-btn" type="primary" bindtap="addItem">新增</button>
   </view>

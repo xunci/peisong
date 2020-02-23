@@ -11,15 +11,45 @@ const goodsItem = {
 }
 Page({
   data: {
-    formData: {},
+    formData: { orderer: '', phone_number: '' },
     goods: [{ ...goodsItem }],
     action: 'add',
     orderId: null,
+
+    authorized: null,
   },
 
   onLoad() {
+    const that = this
     wx.hideTabBar()
-    this.getDispatcherInfo() // 判断是否配送人
+    // 查看是否授权
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function(res) {
+              that.setData({
+                authorized: true,
+              })
+              that.login(res.userInfo)
+            },
+          })
+        } else {
+          that.setData({
+            authorized: false,
+          })
+        }
+      },
+    })
+  },
+
+  getUserInfo(data) {
+    console.log('授权信息', data)
+    this.setData({
+      authorized: true,
+    })
+    this.login(data.detail.userInfo || null)
   },
 
   onShow() {
@@ -40,8 +70,8 @@ Page({
     app.currentOrder = null
   },
 
-  async getDispatcherInfo() {
-    const { dispatcher } = await http('login')
+  async login(userInfo) {
+    const { dispatcher } = await http('login', { userInfo })
     // const dispatcher = false
     app.isDispatcher = dispatcher
     if (dispatcher) {
@@ -56,10 +86,29 @@ Page({
 
   async submitForm() {
     const { formData, goods, action, orderId } = this.data
+    const goodsSubmit = goods.filter(item => item.name && item.number)
+    if (!formData.orderer.trim()) {
+      return wx.showToast({
+        title: '请填写姓名',
+        icon: 'none',
+      })
+    }
+    if (!formData.phone_number.trim()) {
+      return wx.showToast({
+        title: '请填写电话',
+        icon: 'none',
+      })
+    }
+    if (!goodsSubmit.length) {
+      return wx.showToast({
+        title: '请添加货物',
+        icon: 'none',
+      })
+    }
     const order = {
       _id: action === 'update' ? orderId : '',
       ...formData,
-      goods,
+      goods: goodsSubmit,
       hand_time: '',
       handler: '',
       status: 'orderd', // 已下单、正在采购、已购买、已配送、完成

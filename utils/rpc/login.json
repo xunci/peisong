@@ -1,7 +1,17 @@
 {
-  "method":"login",
-  "param":{},
-  "response":{
+  "method": "login",
+  "param": {
+    "userInfo": {
+      "avatarUrl": "https://wx.qlogo.cn/mmopen/vi_32/PiajxSqBRaEKyRoytLcOLM8WGoYdQAYicgsuzoGibTnpz5NKW2NjIR5bTcB2cLibO2jePHPCrRNoCeiaib2ZrLR2EnDw/132",
+      "city": "Shenzhen",
+      "country": "China",
+      "gender": 1,
+      "language": "zh_CN",
+      "nickName": "咕咚",
+      "province": "Guangdong"
+    }
+  },
+  "response": {
     "dispatcher": true
   }
 }

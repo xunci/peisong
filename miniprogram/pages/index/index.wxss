@@ -25,3 +25,7 @@
   height: 10px;
   background: #efefef;
 }
+
+.authorize{
+  padding: 100px 24px;
+}
