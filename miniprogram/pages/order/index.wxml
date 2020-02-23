@@ -4,7 +4,7 @@
   <mp-cells title="{{item.orderer}} - {{item.phone_number}} - {{statusMap[item.status]}}" wx:for="{{orders}}">
 
     <mp-cell wx:if="{{!isDispatcher}}" wx:for="{{item.goods}}" wx:for-index="idx" wx:for-item="goodsItem" title="{{goodsItem.name}}：">
-      {{goodsItem.number}}
+      {{goodsItem.number}} （{{goodsItem.status==='in_stock'?'有货':'无货'}}）
     </mp-cell>
 
     <mp-checkbox-group wx:if="{{isDispatcher}}" prop="checkbox" multi="{{true}}">
