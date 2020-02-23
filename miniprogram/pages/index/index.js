@@ -5,7 +5,7 @@ const goodsItem = {
   name: '',
   number: '',
   note: '',
-  stats: 'in_stock', //枚举： 已下单、已购买、无法购买
+  status: 'in_stock', //枚举： 已下单、已购买、无法购买
   handler: '',
   hand_time: '',
 }

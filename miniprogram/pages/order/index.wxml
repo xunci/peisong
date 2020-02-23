@@ -1,7 +1,7 @@
 <!-- index.wxml -->
-<view class="container">
+<view class="{{ isDispatcher ? 'container' : ''}}" >
   <button wx:if="{{isDispatcher}}" class="filter-btn" bindtap="showSelect">{{statusMap[status]}} ></button>
-  <mp-cells title="{{item.orderer}} - {{item.phone_number}}" wx:for="{{orders}}">
+  <mp-cells title="{{item.orderer}} - {{item.phone_number}} - {{statusMap[item.status]}}" wx:for="{{orders}}">
 
     <mp-cell wx:if="{{!isDispatcher}}" wx:for="{{item.goods}}" wx:for-index="idx" wx:for-item="goodsItem" title="{{goodsItem.name}}：">
       {{goodsItem.number}}
