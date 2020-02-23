@@ -7,9 +7,9 @@ Page({
     orders: [],
     isDispatcher: app.isDispatcher,
     statusMap: {
-      orderd: '已下单',
+      orderd: '待采购',
       purchasing: '采购中',
-      purchased: '已采购',
+      purchased: '待配送',
       dispatched: '已配送',
       done: '已完成',
       cancelled: '已取消',
@@ -104,9 +104,11 @@ Page({
 
   showSelect() {
     const that = this
-    const status = ['orderd', 'purchasing', 'purchased', 'dispatched', 'done', 'cancelled']
+    // const status = ['orderd', 'purchasing', 'purchased', 'dispatched', 'done', 'cancelled']
+    const status = ['orderd',  'purchased']
     wx.showActionSheet({
-      itemList: ['已下单', '采购中', '已采购', '已配送', '已完成', '已取消'],
+      // itemList: ['待采购', '采购中', '已采购', '已配送', '已完成', '已取消'],
+      itemList: ['待采购', '待配送'],
       success(res) {
         that.setData({
           status: status[res.tapIndex],

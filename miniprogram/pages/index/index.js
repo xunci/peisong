@@ -3,7 +3,7 @@ import { http } from '../../request'
 const app = getApp()
 const goodsItem = {
   name: '',
-  number: '1',
+  number: '',
   note: '',
   stats: '购买', //枚举： 已下单、已购买、无法购买
   handler: '',
